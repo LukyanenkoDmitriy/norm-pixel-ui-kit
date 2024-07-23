@@ -1,29 +1,27 @@
-/* ttf */
 @font-face {
-    font-family: "Cloude";
-    src: url("../assets/fonts/Cloude_Regular_1.02.ttf") format("woff");
+    font-family: "Fairfax";
+    src: url("../assets/fonts/Fairfax.ttf") format("woff");
     font-style: normal;
-    font-weight: 400;
+    font-weight: 500;
 }
 
 @font-face {
-    font-family: "Cloude";
-    src: url("../assets/fonts/Cloude_Regular_Bold_1.02.ttf") format("woff");
+    font-family: "Fairfax", sans-serif;
+    src: url("../assets/fonts/FairfaxSerif.ttf") format("woff");
     font-style: normal;
-    font-weight: 600;
-}
-
-/* otf */
-@font-face {
-    font-family: "Cloude";
-    src: url("../assets/fonts/Cloude_Regular_1.02.otf") format("woff");
-    font-style: normal;
-    font-weight: 400;
+    font-weight: 500;
 }
 
 @font-face {
-    font-family: "Cloude";
-    src: url("../assets/fonts/Cloude_Regular_Bold_1.02.otf") format("woff");
+    font-family: "Fairfax";
+    src: url("../assets/fonts/FairfaxItalic.ttf") format("woff");
+    font-style: italic;
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Fairfax";
+    src: url("../assets/fonts/FairfaxBold.ttf") format("woff");
     font-style: normal;
-    font-weight: 400;
+    font-weight: 700;
 }
