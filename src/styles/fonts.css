@@ -1,0 +1,27 @@
+@font-face {
+    font-family: "Fairfax";
+    src: url("../assets/fonts/Fairfax.ttf") format("woff");
+    font-style: normal;
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Fairfax", sans-serif;
+    src: url("../assets/fonts/FairfaxSerif.ttf") format("woff");
+    font-style: normal;
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Fairfax";
+    src: url("../assets/fonts/FairfaxItalic.ttf") format("woff");
+    font-style: italic;
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Fairfax";
+    src: url("../assets/fonts/FairfaxBold.ttf") format("woff");
+    font-style: normal;
+    font-weight: 700;
+}
