@@ -1,12 +1,13 @@
-import { skeletonMixin } from "../../components/Skeleton"
-import { reg16BitColor, regUnits } from "../../constants/regExp"
-import React from "react"
+import { checkUnits, checkColor } from "../../utils"
+import { skeletonMixin } from "../../components"
+import React, { PropsWithChildren } from "react"
 import styled, { css } from "styled-components"
 
 export interface TextProps {
 	/* Высота skeleton [ Если нет начального текста ]
-	[ Строка должна включать единицы измерения ] */
-	skeletonHeight?: string
+	 * [ Строка должна включать единицы измерения ]
+	 * [ Для числа единицы измерения будут пиксели ] */
+	skeletonHeight?: string | number
 	/* Состояние skeleton */
 	skeleton?: boolean
 	/* Миксин созданный с помощью styled css [ Кастомные стили ] */
@@ -15,41 +16,53 @@ export interface TextProps {
 	color?: string
 	/* Отображаемое значение */
 	text?: string
+	/* Размер шрифта
+	 * [ Строка должна включать единицы измерения ]
+	 * [ Для числа единицы измерения будут пиксели ] */
+	fontSize?: string | number
 	/* Html тэг */
 	tag?: string
 }
 
 export interface TextWrapperProps {
-	$skeletonHeight?: string
+	$skeletonHeight?: string | number
 	$skeleton?: boolean
 	$cssMixin?: ReturnType<typeof css>
 	$color?: string
+	$fontSize?: string | number
 }
 
-export const Text = ({ text, tag, skeleton, color, skeletonHeight, cssMixin }: TextProps) => {
-	const height = regUnits.test(skeletonHeight || "") ? skeletonHeight : "12px"
+export const Text = ({
+	text,
+	children,
+	tag,
+	skeleton,
+	color,
+	fontSize,
+	skeletonHeight,
+	cssMixin
+}: PropsWithChildren<TextProps>) => {
+	const checkHeight = children || text
 	return (
 		<TextWrapper
-			$skeletonHeight={text ? "auto" : height}
+			$skeletonHeight={checkHeight ? "auto" : skeletonHeight}
+			$fontSize={fontSize}
 			$color={color}
 			$skeleton={skeleton}
 			$cssMixin={cssMixin}
 			as={tag}
 		>
-			{text}
+			{children || text}
 		</TextWrapper>
 	)
 }
 
 const TextWrapper = styled.span<TextWrapperProps>`
 	${({ $skeletonHeight }) => $skeletonHeight !== "auto" && "display: block"};
-	min-height: ${({ $skeletonHeight }) => $skeletonHeight};
-	color: ${({ $color, $skeleton, theme }) => {
-		return $skeleton
-			? "transparent"
-			: reg16BitColor.test($color || "")
-				? $color
-				: theme.color.text.primary
+	font-size: ${({ $fontSize }) => checkUnits("inherit", $fontSize)};
+	min-height: ${({ $skeletonHeight }) => checkUnits("1em", $skeletonHeight)};
+	color: ${({ $color, $skeleton }) => {
+		return $skeleton ? "transparent" : checkColor("inherit", $color)
 	}};
 	${({ $cssMixin }) => $cssMixin && $cssMixin}
 	${({ $skeleton }) => $skeleton && skeletonMixin}
