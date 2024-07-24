@@ -4,7 +4,7 @@ fgRed = "\x1b[31m"
 module.exports = {
 	parserPreset: {
 		parserOpts: {},
-		headerPattern: /([(ADD|UPDATE|REWORK|FIX)]: .*'])/
+		headerPattern: /([(ADD|UPDATE|REWORK|FIX|MERGE)]: .*'])/
 	},
 	rules: {
 		"custom-length-format": [2, "always"],
@@ -15,12 +15,12 @@ module.exports = {
 			rules: {
 				"custom-header-format": (parsed) => {
 					const [type] = parsed.header.split(":")
-					const regexPattern = /^[(ADD|UPDATE|REWORK|FIX)]/
+					const regexPattern = /^[(ADD|UPDATE|REWORK|FIX|MERGE)]/
 
 					if (!regexPattern.test(type.trim())) {
 						return [
 							false,
-							` ${fgRed}Сообщение :[ADD|UPDATE|REWORK|FIX]: message${reset}`
+							` ${fgRed}Сообщение :[ADD|UPDATE|REWORK|FIX|MERGE]: message${reset}`
 						]
 					}
 
